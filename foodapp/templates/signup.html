@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock %}
+ {% block content %}
+   <div class="container  col-md-6 my-5">
+      <h3 class="alert alert-secondary border rounded">User Creation Form</h3>
+       <form method="POST" action="">
+          {% csrf_token %}
+         {{form|crispy}}
+         <input type="submit" class="btn btn-success btn-lg" value="Register">
+       </form>
+   </div>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} Checkout {% endblock %}
+ {% block content %}
+      <div class="container my-5">
+           <div class="row">
+              <div class="col-md-6">
+                <label>First Name</label><br>
+                        <input type="text" class="form-control" placeholder="Enter first name"><br>
+                    <label>Last Name</label><br>
+                        <input type="text" class="form-control" placeholder="Enter last name"><br>
+                    <label>Email</label><br>
+                        <input type="text" class="form-control" placeholder="Enter your email"><br>
+                    <label>Phone</label><br>
+                        <input type="text" class="form-control" placeholder="Enter phone number"><br>
+                    <label>City</label><br>
+                        <input type="text" class="form-control" placeholder="Enter city name"><br>
+                    <label>Address</label><br>
+                         <textarea class="form-control" row="5" placeholder="Enter address"></textarea><br>
+                    <input type="submit" class="btn btn-success btn-lg" value="Checkout">
+              </div>
+              <div class="col-md-6">
+                 {% if cartItems %}
+                     <table class="table table-bordered table-hover table-striped" style="color:white;">
+                         <thead>
+                             <tr>
+                                 <th>Name</th>
+                                 <th>Quantity</th>
+                                 <th>Price</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             {% for item in cartItems%}
+                               <tr>
+                                  <td style="color:white;">{{item.food.name}}</td>
+                                  <td style="color:white;">{{item.food_qty}}</td>
+                                  <td style="color:white;">{{item.food.price}}</td>
+                               </tr>
+                             {% endfor %}
+                         </tbody>
+                     </table>
+                {% else %}
+                   <p>Cart is Empty !!</p>
+                {% endif %}
+              </div>
+           </div>
+      </div>
+ {% endblock %}
+
+
+ 

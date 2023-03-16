@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% block title %} Food Detail {% endblock %}
+ {% block content %}
+   <div class="container my-5 food-data">
+     
+      <h4 class="alert alert-light rounded bordered">Food Description</h4>
+        <h5>Name: {{food_detail.name}}</h5>
+        <h5>Price: {{food_detail.price}}</h5>
+        <img src="{{food_detail.image.url}}" height="200px" width="200px" ><br><br>
+        <p>{{food_detail.description}}</p><br><hr>
+        <div class="col-md-3 d-flex">
+            <button class="btn btn-info decrement-btn">-</button>
+            <input type="text" name="food-qty" class="form-control text-center qty-input" value="1">
+            <button class="btn btn-info increment-btn">+</button>
+        </div><br><br>
+        <form >
+            {% csrf_token %}
+              <input type="hidden" class="food-id" value="{{food_detail.id}}">
+              <input type="submit"  class="btn btn-primary addToCartBtn" value="Add to Cart">
+         </form>
+   </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

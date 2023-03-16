@@ -1,0 +1,27 @@
+
+      {% extends 'base.html' %}
+      {% block title %} Home {% endblock %}
+       {% block content %}
+         <div class="container my-5">
+            <div class="row mx-auto" id="products">
+                    {% for food in foods %}
+                    <div class="col-sm-3">
+                      <div class="card mb-4 mx-auto" style="width: 18rem;">
+                        <img src="{{food.image.url}}" height="200px" width="200px" class="card-img-top" >
+                        <div class="card-body" style="color:black;">
+                          <h5 class="card-title"><a href="{% url 'foodDetail' food.id %}" style="text-decoration:none;">{{food.name}}</a></h5>
+                          <p class="card-text">{{food.price}}</p>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+            </div>
+         </div>
+      {% endblock %}
+
+
+
+
+
+  

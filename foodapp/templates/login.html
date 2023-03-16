@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+ {% block content %}
+   <div class="container my-5 col-md-6">
+      <h4 class="alert alert-light rounded bordered">Login </h4>
+      <form method="POST" action="">
+         {% csrf_token %}
+         <label>Email</label>
+         <input type="email"  class="form-control" name="email" required><br>
+         <label>Password</label>
+         <input type="password" class="form-control" name="password"><br>
+         <input type="submit" value="Login" class="btn btn-success btn-lg">
+      </form>
+   </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% block title %} Cart {% endblock %}
+ {% block content %}
+   <div class="container my-5">
+      <h4 class="alert alert-light bordered rounded">My Cart</h4>
+      <table class="table table-bordered table-striped table-rounded " style="color:white;">
+          {% if cart %}
+                    <thead>
+                        <tr>
+                            <th>Sno</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cart in cart %}
+                        <tr style="color:white;" class="food-data">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{cart.food.name}}</td>
+                            <td><img src="{{cart.food.image.url}}" style="height:10%; width:10%; object-fit:cover;"></td>
+                            <td>{{cart.food.price}}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <input type="hidden" class="food-id" value="{{cart.food_id}}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-info changeQuantity decrement-btn">-</button>
+                                    <input type="text" name="food-qty" class="form-control text-center qty-input" value="{{cart.food_qty}}">
+                                    <button class="btn btn-info changeQuantity increment-btn">+</button>
+                                </div>
+                            </td>
+                            <td><input type="submit" class="btn btn-danger delete-cart-item" value="Remove"></td>
+                        </tr>
+                        {% endfor %}
+                      
+                         <a href="{% url 'checkout' %}" class="btn btn-outline-success" style="float:right;">Checkout</a>
+                        
+                    </tbody>
+                    
+            {% else %}
+                 <p>Cart is empty </p>
+            {% endif %}
+            
+      </table>
+   </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
