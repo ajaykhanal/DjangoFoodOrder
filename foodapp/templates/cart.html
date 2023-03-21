@@ -36,13 +36,14 @@
                         </tr>
                         {% endfor %}
                       
-                         <a href="{% url 'checkout' %}" class="btn btn-outline-success" style="float:right;">Checkout</a>
+                         <a href="{% url 'checkout' %}" class="btn btn-outline-success float-end">Checkout</a>
                         
                     </tbody>
                     
             {% else %}
                  <p>Cart is empty </p>
             {% endif %}
+            
             
       </table>
    </div>

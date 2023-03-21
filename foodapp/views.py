@@ -9,7 +9,7 @@ from django.contrib.auth import (
                                   logout ,
                                   login
                               )
-from .models import Cart
+from .models import Cart,Order,OrderItem
 from django.http import JsonResponse
 
 # Create your views here.
@@ -151,3 +151,32 @@ def checkoutView(request):
     for item in cartItems:
         totalprice += item.food.price * item.food_qty;
     return render(request,"checkout.html",{'totalprice':totalprice,'cartItems':cartItems});
+
+
+def placeanOrderView(request):
+    if request.method=="POST":
+        neworder= Order()
+        neworder.user= request.user
+        neworder.fname= request.POST.get('fname')
+        neworder.lname= request.POST.get('lname')
+        neworder.email= request.POST.get('email')
+        neworder.phone= request.POST.get('phone')
+        neworder.city= request.POST.get('city')
+        neworder.address= request.POST.get('address')
+        cart= Cart.objects.filter(user=request.user)
+        cart_total_price=0
+        for item in cart:
+            cart_total_price= cart_total_price + item.food.price * item.food_qty 
+        neworder.total_price= cart_total_price;
+        neworder.save();
+        neworderitems= Cart.objects.filter(user=request.user)
+        for item in neworderitems:
+            OrderItem.objects.create(
+                order= neworder,
+                food= item.food,
+                price= item.food.price,
+                quantity= item.food_qty,
+            )
+        Cart.objects.filter(user=request.user).delete();
+        messages.success(request,"Your Order has been placed successfully ! We Will Contact you as soon as possible !!");
+    return redirect("/");
