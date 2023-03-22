@@ -178,5 +178,16 @@ def placeanOrderView(request):
                 quantity= item.food_qty,
             )
         Cart.objects.filter(user=request.user).delete();
+        return redirect("/my-orders");
         messages.success(request,"Your Order has been placed successfully ! We Will Contact you as soon as possible !!");
     return redirect("/");
+
+
+def myOrdersView(request):
+    orderitems= Order.objects.filter(user=request.user);
+    return render(request,"orders.html",{'orderitems':orderitems});
+
+def viewOrderItems(request):
+    order= Order.objects.filter(user= request.user).first();
+    orderitems= OrderItem.objects.filter(order=order);
+    return render(request,"viewordersitem.html",{'orderitems':orderitems,'order':order});

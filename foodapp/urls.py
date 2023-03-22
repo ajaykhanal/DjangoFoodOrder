@@ -16,4 +16,6 @@ urlpatterns = [
     path('delete-cart', deleteCartView, name="deleteCart"),
     path('checkout', checkoutView, name="checkout"),
     path('place-an-order', placeanOrderView, name="placeanorder"),
+    path('my-orders',myOrdersView,name="myorders"),
+    path('view-order-items',viewOrderItems,name="viewOrderItems"),
 ]

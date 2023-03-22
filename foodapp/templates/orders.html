@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+{% block title %} My Orders {% endblock %}
+ {% block content %}
+   <div class="container my-5">
+      <h4 class="alert alert-light bordered rounded">My Orders</h4>
+      <table class="table table-bordered table-striped table-rounded " style="color:white;">
+          {% if orderitems %}
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Order Date</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in orderitems %}
+                        <tr>
+                            <td style="color:white;">{{item.id}}</td>
+                            <td style="color:white;">{{item.created_at}}</td>
+                            <td style="color:white;">{{item.total_price}}</td>
+                            <td style="color:white;">{{item.status}}</td>
+                           <td><a href="{% url 'viewOrderItems' %}" class="btn btn-success btn-lg">View</a></td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+      </table>
+      {% else %}
+           <p>No any Orders Found</p>
+      {% endif %}
+   </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
